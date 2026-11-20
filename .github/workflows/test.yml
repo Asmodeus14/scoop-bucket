@@ -1,0 +1,31 @@
+# Install ChronoStack from this bucket on a clean Windows runner.
+name: test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  install:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install Scoop
+        shell: pwsh
+        run: |
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+          Join-Path (Resolve-Path ~).Path "scoop\shims" >> $env:GITHUB_PATH
+      - name: Install chronostack from this bucket
+        shell: pwsh
+        run: |
+          scoop bucket add chronostack $env:GITHUB_WORKSPACE
+          scoop install chronostack/chronostack
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+      - name: Check the installed version
+        shell: pwsh
+        run: |
+          $want = (Get-Content bucket/chronostack.json | ConvertFrom-Json).version
+          $got = chronostack --version
+          "installed: $got (manifest: $want)"
+          if ($got -ne "chronostack $want") { exit 1 }
