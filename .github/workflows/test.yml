@@ -20,7 +20,7 @@ jobs:
         shell: pwsh
         run: |
           # Scoop wants a git URL, not a folder path.
-          $url = "file:///" + ($env:GITHUB_WORKSPACE -replace '\', '/')
+          $url = "file:///" + $env:GITHUB_WORKSPACE.Replace('\', '/')
           scoop bucket add chronostack $url
           if ($LASTEXITCODE -ne 0) { exit 1 }
           scoop install chronostack/chronostack
