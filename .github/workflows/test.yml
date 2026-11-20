@@ -19,7 +19,10 @@ jobs:
       - name: Install chronostack from this bucket
         shell: pwsh
         run: |
-          scoop bucket add chronostack $env:GITHUB_WORKSPACE
+          # Scoop wants a git URL, not a folder path.
+          $url = "file:///" + ($env:GITHUB_WORKSPACE -replace '\', '/')
+          scoop bucket add chronostack $url
+          if ($LASTEXITCODE -ne 0) { exit 1 }
           scoop install chronostack/chronostack
           if ($LASTEXITCODE -ne 0) { exit 1 }
       - name: Check the installed version
