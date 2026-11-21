@@ -1,5 +1,5 @@
 {
-    "version": "0.1.0-alpha.7",
+    "version": "0.1.0-alpha.8",
     "description": "Stripe Test Clocks for your Docker Compose stack: move time forward across Postgres, Redis and your services to test trials, renewals and cron jobs.",
     "homepage": "https://github.com/Asmodeus14/ChronoStack",
     "license": "MIT|Apache-2.0",
@@ -9,8 +9,8 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Asmodeus14/ChronoStack/releases/download/v0.1.0-alpha.7/chronostack-0.1.0-alpha.7-win32-x64.zip",
-            "hash": "7e406fa660cb3273adc0debd9fae6fce50935e013afe9eeb7b949566db998aba"
+            "url": "https://github.com/Asmodeus14/ChronoStack/releases/download/v0.1.0-alpha.8/chronostack-0.1.0-alpha.8-win32-x64.zip",
+            "hash": "e2e3801ea1de80d398d58a98ded465dcca33b2035a66aac59158ad102402a1ab"
         }
     },
     "bin": "chronostack.exe",
